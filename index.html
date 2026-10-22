@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RITWIK VINOD — Social Media Specialist &amp; Digital Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Cinematic 3-Second Landing Intro Overlay -->
+    <div id="cinematic-intro" class="cinematic-intro-overlay" aria-hidden="true">
+      <canvas id="intro-particles-canvas" class="intro-particles-canvas"></canvas>
+      <div class="intro-atmospheric-glow" aria-hidden="true"></div>
+      
+      <div class="intro-center-stage">
+        <div class="intro-name-wrapper" aria-label="RITWIK VINOD">
+          <span class="intro-char" style="--i:0;">R</span>
+          <span class="intro-char" style="--i:1;">I</span>
+          <span class="intro-char" style="--i:2;">T</span>
+          <span class="intro-char" style="--i:3;">W</span>
+          <span class="intro-char" style="--i:4;">I</span>
+          <span class="intro-char" style="--i:5;">K</span>
+          <span class="intro-space">&nbsp;</span>
+          <span class="intro-char" style="--i:7;">V</span>
+          <span class="intro-char" style="--i:8;">I</span>
+          <span class="intro-char" style="--i:9;">N</span>
+          <span class="intro-char" style="--i:10;">O</span>
+          <span class="intro-char" style="--i:11;">D</span>
+        </div>
+
+        <div class="intro-light-sweep-bar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Top Editorial Header Navigation inspired by reference layout -->
+    <header id="main-nav">
+      <div class="nav-brand-container">
+        <a href="#home" class="nav-brand">RITWIK VINOD</a>
+      </div>
+      <nav class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <span class="nav-divider">·</span>
+        <a href="#about" class="nav-link">About</a>
+        <span class="nav-divider">·</span>
+        <a href="#expertise" class="nav-link">Expertise</a>
+        <span class="nav-divider">·</span>
+        <a href="#experience" class="nav-link">Experience</a>
+        <span class="nav-divider">·</span>
+        <a href="#education" class="nav-link">Education</a>
+        <span class="nav-divider">·</span>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Scroll track driving the full sequence -->
+    <div id="scroll-track">
+      <div id="sticky-viewport">
+        <!-- Cinematic Canvas Background Sequence -->
+        <canvas id="animation-canvas"></canvas>
+
+        <!-- Realistic Three.js Animated Liquid Water Environment & Mist -->
+        <canvas id="three-water-canvas" class="three-water-canvas" aria-hidden="true"></canvas>
+        <div class="water-vignette-overlay" aria-hidden="true"></div>
+        <div class="water-crimson-mist" aria-hidden="true"></div>
+
+        <!-- Subtle Left Gradient Vignette for Text Contrast -->
+        <div class="cinematic-backdrop-gradient" aria-hidden="true"></div>
+
+        <!-- Editorial Hero Composition inspired by reference image -->
+        <main id="hero-editorial" class="hero-editorial-overlay">
+          <!-- Top Editorial Micro-Labels -->
+          <div class="editorial-top-strip">
+            <span class="editorial-top-label">
+              <span class="crimson-tag">//</span> SENIOR SEO ANALYST
+            </span>
+            <span class="editorial-top-label">
+              <span class="crimson-tag">//</span> DIGITAL MARKETING EXECUTIVE
+            </span>
+          </div>
+
+          <!-- Main Dominant Name Headline & Specialist Sub-title (80-120px) -->
+          <div class="hero-headline-block">
+            <h1 class="main-name-headline">
+              <span class="name-line">RITWIK</span>
+              <span class="name-line">VINOD</span>
+            </h1>
+            <div class="sub-specialist-block">
+              <span class="accent-bullet">●</span>
+              <span class="specialist-text">SOCIAL MEDIA SPECIALIST</span>
+            </div>
+          </div>
+
+          <!-- Bottom Editorial Section (Lower Left & Right Blocks) -->
+          <div class="hero-bottom-editorial">
+            <!-- Lower Left: Supporting Headline + Description + Bracketed Contact -->
+            <div class="editorial-block-left">
+              <h2 class="supporting-headline">Turning Attention Into Impact.</h2>
+              <p class="supporting-description">
+                I build digital strategies that connect brands with audiences through social media, SEO, content, and performance marketing.
+              </p>
+              <a href="#contact" class="editorial-action-link">
+                [ CONTACT ]
+              </a>
+            </div>
+
+            <!-- Lower Right: Editorial Tagline & Disciplines -->
+            <div class="editorial-block-right">
+              <div class="editorial-dash-line"></div>
+              <div class="editorial-specialties-list">
+                <span class="spec-item">SOCIAL MEDIA STRATEGY</span>
+                <span class="spec-dot">·</span>
+                <span class="spec-item">SEARCH ENGINE OPTIMIZATION</span>
+                <span class="spec-dot">·</span>
+                <span class="spec-item">PERFORMANCE MARKETING</span>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Professional Summary Section (Introduced at scroll point shown in reference screenshot) -->
+        <section id="professional-summary" class="summary-section-overlay" aria-label="Professional Summary">
+          <div class="summary-container">
+            <div class="summary-header-group">
+              <span class="summary-eyebrow">01 / ABOUT MY WORK</span>
+              <h2 class="summary-heading">
+                <span class="heading-line">PROFESSIONAL</span>
+                <span class="heading-line">SUMMARY</span>
+              </h2>
+              <div class="summary-accent-line" aria-hidden="true"></div>
+            </div>
+            <p class="summary-paragraph">
+              Results-driven Digital Marketing Professional with experience in SEO, performance marketing, social media, lead generation, campaign management, and customer engagement across media, education, finance, and marketing sectors. Skilled in Google Ads, Meta Ads, Google Analytics (GA4), SEO optimization, CRM tools, and email marketing. Proven ability to increase website traffic, improve campaign performance, and support business growth through data-driven marketing strategies.
+            </p>
+          </div>
+        </section>
+
+        <!-- Skills & Expertise Section (Immediately following Professional Summary) -->
+        <section id="skills-expertise" class="skills-section-overlay" aria-label="Skills and Expertise">
+          <div class="skills-backdrop-glow" aria-hidden="true"></div>
+
+          <div class="skills-content-wrapper">
+            <!-- Section Header -->
+            <div class="skills-header" id="skills-header">
+              <span class="skills-eyebrow">02 / WHAT I BRING TO THE TABLE</span>
+              <h2 class="skills-heading">SKILLS &amp; EXPERTISE</h2>
+              <p class="skills-subtitle">Strategy meets creativity. Data meets growth.</p>
+              <div class="skills-header-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Two-column Editorial Composition: Skills Grid & Asymmetrical Floating Visuals -->
+            <div class="skills-editorial-grid">
+              <!-- Left: The 7 Progressive Skill Groups -->
+              <div class="skills-list-container" id="skills-list-container">
+                <!-- 01 — SEO -->
+                <div class="skill-row" data-skill-index="1">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">01</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">SEO</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Technical SEO, On-Page SEO, Off-Page SEO, Keyword Research, Competitor Analysis, SERP Analysis, Content Optimization, Google Search Console.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 02 — Analytics -->
+                <div class="skill-row" data-skill-index="2">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">02</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">ANALYTICS</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Google Analytics 4 (GA4), Google Search Console, SEO Reporting, Traffic Analysis, Audience Analysis, Performance Tracking.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03 — Social Media -->
+                <div class="skill-row" data-skill-index="3">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">03</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">SOCIAL MEDIA</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Facebook, Instagram, YouTube, Reels, Social Media Strategy, Content Performance, Audience Growth, Social Analytics.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 04 — Tools -->
+                <div class="skill-row" data-skill-index="4">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">04</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">TOOLS</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Semrush, Ahrefs, Screaming Frog, GA4, Google Search Console, Moz, SimilarWeb.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 05 — Paid Media -->
+                <div class="skill-row" data-skill-index="5">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">05</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">PAID MEDIA</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Google Ads, Meta Ads (Facebook &amp; Instagram), Campaign Budgeting, A/B Testing.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 06 — Content & CRM -->
+                <div class="skill-row" data-skill-index="6">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">06</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">CONTENT &amp; CRM</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Email Marketing, WhatsApp Marketing, Landing Pages, WordPress, CRM Tools.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 07 — Growth & Collaboration -->
+                <div class="skill-row" data-skill-index="7">
+                  <div class="skill-row-line"></div>
+                  <div class="skill-row-content">
+                    <div class="skill-heading-col">
+                      <span class="skill-index">07</span>
+                      <span class="skill-divider-dash">—</span>
+                      <span class="skill-category">GROWTH &amp; COLLABORATION</span>
+                    </div>
+                    <div class="skill-desc-col">
+                      <p class="skill-description">Link Building, Lead Generation, Account Development, Offline Marketing, Stakeholder Collaboration.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Asymmetrical Overlapping Floating Visuals -->
+              <div class="skills-visuals-composition" aria-hidden="true">
+                <!-- Visual 1: Search Visibility (Seo.jpg) -->
+                <div class="visual-card visual-seo" id="visual-seo-wrapper">
+                  <div class="visual-img-container">
+                    <img src="/src/Images/Seo.jpg" alt="Search Visibility" class="editorial-visual-img" id="seo-visual-img" loading="eager" />
+                    <div class="visual-vignette-overlay"></div>
+                  </div>
+                  <div class="visual-label-tag">
+                    <span class="visual-tag-indicator"></span>
+                    <span class="visual-tag-text">SEARCH VISIBILITY</span>
+                  </div>
+                </div>
+
+                <!-- Visual 2: Growth Strategy (strategy.jpg) -->
+                <div class="visual-card visual-strategy" id="visual-strategy-wrapper">
+                  <div class="visual-img-container">
+                    <img src="/src/Images/strategy.jpg" alt="Growth Strategy" class="editorial-visual-img" id="strategy-visual-img" loading="eager" />
+                    <div class="visual-vignette-overlay"></div>
+                  </div>
+                  <div class="visual-label-tag">
+                    <span class="visual-tag-indicator"></span>
+                    <span class="visual-tag-text">GROWTH STRATEGY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Work Experience Section (Cinematic Floating Career Timeline) -->
+        <section id="work-experience" class="experience-section-overlay" aria-label="Work Experience">
+          <div class="experience-ambient-glow" aria-hidden="true"></div>
+          
+          <div class="experience-content-wrapper">
+            <!-- Section Header -->
+            <div class="experience-header" id="experience-header">
+              <span class="experience-eyebrow">03 / CAREER TRAJECTORY</span>
+              <h2 class="experience-heading">WORK EXPERIENCE</h2>
+              <p class="experience-subtitle">Proven track record of driving organic growth, high-impact campaigns, and revenue generation.</p>
+              <div class="experience-header-line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Floating Career Timeline Stage -->
+            <div class="experience-timeline-stage" id="experience-stage">
+              <!-- Central Progressive Glowing Timeline Line -->
+              <div class="timeline-vertical-spine" aria-hidden="true">
+                <div class="timeline-spine-track"></div>
+                <div class="timeline-spine-progress" id="timeline-spine-progress"></div>
+                <div class="timeline-spine-glow-head" id="timeline-spine-glow-head"></div>
+              </div>
+
+              <!-- Floating Interactive Milestones (Alternating Asymmetrical Editorial Panels) -->
+              <div class="experience-milestones-track" id="experience-milestones-track">
+                
+                <!-- 01 — Reporter Broadcasting Company Pvt. Ltd. (Current) -->
+                <article class="experience-milestone-panel milestone-left" data-exp-index="1" id="exp-panel-1">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">01</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                    <span class="milestone-status-badge">CURRENT</span>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> July 2026 – Present</span>
+                      <span class="milestone-location">Kerala, India</span>
+                    </div>
+                    <h3 class="milestone-role">Senior SEO Analyst &amp; Digital Marketing / Social Media Specialist</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">Reporter Broadcasting Company Pvt. Ltd.</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Lead SEO strategy and execution for Reporter TV's digital platforms, improving organic visibility, search rankings, and traffic through keyword research, competitor analysis, SERP analysis, and content gap analysis.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Manage on-page and off-page SEO, including content optimization, internal linking, metadata, technical SEO, and backlink strategy.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Monitor website performance using Google Analytics 4 (GA4), Google Search Console, and SEO tools; prepare daily, weekly, and monthly reports with actionable recommendations.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Plan and execute social media and YouTube growth strategies across Facebook, Instagram, and YouTube, including Reels, videos, and campaigns, using reach, engagement, and audience data to improve content.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Collaborate with content, video, creative, and editorial teams to optimize content for search and social platforms and identify trends for real-time news distribution.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">Technical SEO</span>
+                      <span class="exp-tag">YouTube SEO</span>
+                      <span class="exp-tag">GA4</span>
+                      <span class="exp-tag">Content Gap Analysis</span>
+                      <span class="exp-tag">Real-Time News Distribution</span>
+                      <span class="exp-tag">Social Media Growth</span>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- 02 — Elance Learning Provider -->
+                <article class="experience-milestone-panel milestone-right" data-exp-index="2" id="exp-panel-2">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">02</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> Feb 2025 – Jun 2026</span>
+                      <span class="milestone-location">Kerala, India</span>
+                    </div>
+                    <h3 class="milestone-role">Digital Marketing Executive</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">Elance Learning Provider Pvt. Ltd.</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Scaled monthly website traffic from 6,000 to <span class="metric-highlight">13,000+ monthly visits</span> (+117% increase) through targeted SEO and on-page content revamps.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Managed end-to-end paid acquisition across Google Ads, Facebook, and Instagram, controlling budgets and refining target audiences.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Executed continuous A/B testing on ad creatives and landing pages to systematically elevate CTR and student conversion rates.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Spearheaded email and WhatsApp marketing sequences, analyzing open rates, click-through rates, and webinar enrollment metrics.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">Google Ads</span>
+                      <span class="exp-tag">Meta Ads</span>
+                      <span class="exp-tag">A/B Testing</span>
+                      <span class="exp-tag">SEO Scaling</span>
+                      <span class="exp-tag">Email &amp; WhatsApp Marketing</span>
+                      <span class="exp-tag">Conversion Funnels</span>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- 03 — Global Money Exchange -->
+                <article class="experience-milestone-panel milestone-left" data-exp-index="3" id="exp-panel-3">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">03</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> Aug 2023 – Jan 2025</span>
+                      <span class="milestone-location">Oman / GCC</span>
+                    </div>
+                    <h3 class="milestone-role">Marketing Executive</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">Global Money Exchange L.L.C</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Designed and executed offline marketing and community outreach strategies that produced a <span class="metric-highlight">15% increase in customer inquiries</span>.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Stimulated a <span class="metric-highlight">20% increase in inbound calls</span> by establishing direct partnerships with local businesses and expatriate community associations.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Built brand visibility through sponsorships at major cultural festivals and commercial trade fairs.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Managed the end-to-end production and localized distribution of high-impact in-store displays and promotional literature.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">B2B Outreach</span>
+                      <span class="exp-tag">Offline Marketing</span>
+                      <span class="exp-tag">Local Sponsorships</span>
+                      <span class="exp-tag">Inbound Lead Generation</span>
+                      <span class="exp-tag">Brand Partnerships</span>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- 04 — BYJU'S -->
+                <article class="experience-milestone-panel milestone-right" data-exp-index="4" id="exp-panel-4">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">04</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> Nov 2021 – Jun 2023</span>
+                      <span class="milestone-location">India</span>
+                    </div>
+                    <h3 class="milestone-role">Digital Marketing Analyst</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">BYJU'S (Think and Learn Pvt. Ltd.)</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Drove a <span class="metric-highlight">30% organic traffic growth</span> through structured on-page and off-page SEO initiatives for educational courses.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Conducted extensive keyword discovery, technical website audits, and competitor benchmarking using Ahrefs, SEMrush, and Screaming Frog.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Monitored visitor behavior and drop-off points via Google Analytics to provide actionable CRO recommendations to product teams.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Conducted customer UX surveys to gather qualitative user feedback, supporting iterative web landing page enhancements.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">Ahrefs</span>
+                      <span class="exp-tag">Semrush</span>
+                      <span class="exp-tag">Screaming Frog</span>
+                      <span class="exp-tag">Organic Traffic Growth</span>
+                      <span class="exp-tag">SEO Audits</span>
+                      <span class="exp-tag">User Behavior Analytics</span>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- 05 — GetMega -->
+                <article class="experience-milestone-panel milestone-left" data-exp-index="5" id="exp-panel-5">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">05</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> May 2021 – Nov 2021</span>
+                      <span class="milestone-location">India</span>
+                    </div>
+                    <h3 class="milestone-role">Marketing Intern</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">GetMega</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Acquired foundational expertise in the fast-paced real-money gaming industry, analyzing market dynamics and viral digital content.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Supported inter-departmental communications to synchronize creative asset production workflows and release timelines.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">Digital Content Strategy</span>
+                      <span class="exp-tag">Gaming Industry Insights</span>
+                      <span class="exp-tag">Production Workflows</span>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- 06 — Stepon Polymers -->
+                <article class="experience-milestone-panel milestone-right" data-exp-index="6" id="exp-panel-6">
+                  <div class="milestone-marker-wrapper">
+                    <div class="milestone-marker-node">
+                      <span class="milestone-num">06</span>
+                      <div class="milestone-ping-ring"></div>
+                    </div>
+                  </div>
+                  <div class="milestone-card-glass">
+                    <div class="milestone-card-glow-edge"></div>
+                    <div class="milestone-meta-row">
+                      <span class="milestone-period"><span class="period-dot">●</span> May 2019 – Mar 2020</span>
+                      <span class="milestone-location">Kerala, India</span>
+                    </div>
+                    <h3 class="milestone-role">Admin Assistant</h3>
+                    <div class="milestone-company-wrap">
+                      <span class="company-accent">//</span>
+                      <span class="milestone-company">Stepon Polymers</span>
+                    </div>
+                    <ul class="milestone-highlights-list">
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Managed day-to-day operations and organizational workflows, reporting directly to the Co-founder &amp; CEO.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Handled invoicing, accounts receivable follow-ups, Local Purchase Orders (LPO), and bank reconciliation.</span>
+                      </li>
+                      <li class="milestone-bullet">
+                        <span class="bullet-crimson-dash">—</span>
+                        <span class="bullet-text">Maintained operational compliance records, staff compensation logs, and coordinated with auditors for statutory monthly filings.</span>
+                      </li>
+                    </ul>
+                    <div class="milestone-skills-tags">
+                      <span class="exp-tag">Operations Management</span>
+                      <span class="exp-tag">Account Reconciliation</span>
+                      <span class="exp-tag">Executive Reporting</span>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 / THE FOUNDATION: EDUCATION & BEYOND Section (Directly follows Work Experience) -->
+        <section id="education-section" class="education-section-overlay" aria-label="Education and Beyond">
+          <!-- Floating Editorial Content Composition -->
+          <div class="education-content-wrapper">
+            <!-- Section Header -->
+            <header class="foundation-header" id="foundation-header">
+              <span class="foundation-eyebrow">04 / THE FOUNDATION</span>
+              <h2 class="foundation-heading">
+                <span class="foundation-heading-main">EDUCATION &amp; BEYOND</span>
+              </h2>
+              <p class="foundation-subtitle">Built on knowledge. Refined through practice. Driven by curiosity.</p>
+              <div class="foundation-header-line" aria-hidden="true"></div>
+            </header>
+
+            <!-- Foundation Editorial Grid: Academic Degree & Certifications Columns -->
+            <div class="foundation-editorial-stage">
+              
+              <!-- Left Column: Academic Foundation (B.Com) -->
+              <div class="foundation-col-left" id="foundation-academic-col">
+                <div class="foundation-block-label">
+                  <span class="block-label-dash">//</span>
+                  <span class="block-label-text">ACADEMIC FOUNDATION</span>
+                </div>
+
+                <div class="edu-card-glass" id="edu-degree-card">
+                  <div class="edu-card-glow-edge" aria-hidden="true"></div>
+                  <div class="edu-card-crimson-accent-line" aria-hidden="true"></div>
+                  
+                  <div class="edu-card-meta">
+                    <span class="edu-period">
+                      <span class="edu-period-dot">●</span> 2016 – 2020
+                    </span>
+                    <span class="edu-location">Kerala, India</span>
+                  </div>
+
+                  <h3 class="edu-degree-title">B.Com with Computer Application</h3>
+                  
+                  <div class="edu-institution-wrap">
+                    <span class="edu-inst-accent">//</span>
+                    <span class="edu-institution">Malabar Christian College, Kerala</span>
+                  </div>
+
+                  <p class="edu-card-description">
+                    Rooted in commercial disciplines, financial structures, and computerized business applications — creating the analytical foundation for data-driven digital marketing and strategic growth.
+                  </p>
+
+                  <div class="edu-card-tags">
+                    <span class="edu-tag">Commerce &amp; Finance</span>
+                    <span class="edu-tag">Computer Applications</span>
+                    <span class="edu-tag">Business Analytics</span>
+                    <span class="edu-tag">Information Systems</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Certifications & Achievements -->
+              <div class="foundation-col-right" id="foundation-cert-col">
+                <div class="foundation-block-label">
+                  <span class="block-label-dash">//</span>
+                  <span class="block-label-text">CERTIFICATIONS &amp; ACHIEVEMENTS</span>
+                </div>
+
+                <div class="certifications-list">
+                  <!-- 01 — Performance Marketing Mastery Program -->
+                  <div class="cert-card-glass" data-cert-index="1" id="cert-card-1">
+                    <div class="cert-card-glow-edge" aria-hidden="true"></div>
+                    <div class="cert-light-sweep" aria-hidden="true"></div>
+                    <div class="cert-header-row">
+                      <span class="cert-index">01</span>
+                      <span class="cert-dash">—</span>
+                      <h4 class="cert-title">Performance Marketing Mastery Program</h4>
+                    </div>
+                    <div class="cert-issuer-meta">
+                      <span class="cert-issuer">HACA</span>
+                      <span class="cert-dot">·</span>
+                      <span class="cert-year">2026</span>
+                    </div>
+                    <div class="cert-tags">
+                      <span class="cert-tag">Paid Media Strategy</span>
+                      <span class="cert-tag">ROAS Optimization</span>
+                      <span class="cert-tag">Multi-Channel Growth</span>
+                    </div>
+                  </div>
+
+                  <!-- 02 — Digital Marketing Certification -->
+                  <div class="cert-card-glass" data-cert-index="2" id="cert-card-2">
+                    <div class="cert-card-glow-edge" aria-hidden="true"></div>
+                    <div class="cert-light-sweep" aria-hidden="true"></div>
+                    <div class="cert-header-row">
+                      <span class="cert-index">02</span>
+                      <span class="cert-dash">—</span>
+                      <h4 class="cert-title">Digital Marketing Certification</h4>
+                    </div>
+                    <div class="cert-issuer-meta">
+                      <span class="cert-issuer">Udemy</span>
+                      <span class="cert-dot">·</span>
+                      <span class="cert-year">2022</span>
+                    </div>
+                    <div class="cert-tags">
+                      <span class="cert-tag">Advanced SEO</span>
+                      <span class="cert-tag">Search Engine Marketing</span>
+                      <span class="cert-tag">Campaign Analytics</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Languages: Sophisticated Horizontal Editorial Layout -->
+            <div class="foundation-languages-section" id="foundation-languages">
+              <div class="languages-header-bar">
+                <div class="languages-label-wrap">
+                  <span class="block-label-dash">//</span>
+                  <span class="block-label-text">LANGUAGES</span>
+                </div>
+                <div class="languages-divider-line" aria-hidden="true"></div>
+              </div>
+
+              <div class="languages-editorial-grid">
+                <!-- English -->
+                <div class="language-pill" data-lang="english" id="lang-pill-1">
+                  <span class="lang-num">01</span>
+                  <span class="lang-name">English</span>
+                  <span class="lang-bullet">●</span>
+                </div>
+                <!-- Malayalam -->
+                <div class="language-pill" data-lang="malayalam" id="lang-pill-2">
+                  <span class="lang-num">02</span>
+                  <span class="lang-name">Malayalam</span>
+                  <span class="lang-bullet">●</span>
+                </div>
+                <!-- Hindi -->
+                <div class="language-pill" data-lang="hindi" id="lang-pill-3">
+                  <span class="lang-num">03</span>
+                  <span class="lang-name">Hindi</span>
+                  <span class="lang-bullet">●</span>
+                </div>
+                <!-- Kannada -->
+                <div class="language-pill" data-lang="kannada" id="lang-pill-4">
+                  <span class="lang-num">04</span>
+                  <span class="lang-name">Kannada</span>
+                  <span class="lang-bullet">●</span>
+                </div>
+                <!-- Tamil -->
+                <div class="language-pill" data-lang="tamil" id="lang-pill-5">
+                  <span class="lang-num">05</span>
+                  <span class="lang-name">Tamil</span>
+                  <span class="lang-bullet">●</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 05 / LET'S CONNECT: CONTACT SECTION (Final Closing Scene of the Portfolio) -->
+        <section id="contact-section" class="contact-section-overlay" aria-label="Contact and Let's Connect">
+          <div class="contact-content-wrapper">
+            
+            <!-- Section Header -->
+            <header class="contact-header" id="contact-header">
+              <span class="contact-eyebrow">05 / LET'S CONNECT</span>
+              <h2 class="contact-heading">
+                <span class="heading-line-reveal">HAVE A PROJECT</span>
+                <span class="heading-line-reveal">IN MIND?</span>
+              </h2>
+              <p class="contact-subtitle">Let's turn ideas into meaningful digital experiences.</p>
+              <div class="contact-header-line" aria-hidden="true"></div>
+            </header>
+
+            <!-- Three Distinct Floating Contact Elements -->
+            <div class="contact-cards-grid" id="contact-cards-grid">
+              
+              <!-- Card 01: Email -->
+              <div class="contact-card-glass" data-contact-index="1" id="contact-card-email">
+                <div class="contact-card-glow-edge" aria-hidden="true"></div>
+                <div class="contact-card-light-sweep" aria-hidden="true"></div>
+                <div class="contact-card-top">
+                  <span class="contact-card-tag">// INQUIRIES &amp; COLLABORATION</span>
+                  <span class="contact-card-icon" aria-hidden="true">✉</span>
+                </div>
+                <div class="contact-card-main">
+                  <span class="contact-card-label">EMAIL</span>
+                  <a href="mailto:vinodritwik@gmail.com" class="contact-card-value email-link" aria-label="Email vinodritwik@gmail.com">
+                    vinodritwik@gmail.com
+                  </a>
+                </div>
+                <div class="contact-card-footer">
+                  <a href="mailto:vinodritwik@gmail.com" class="contact-action-btn email-action" aria-label="Send an email to vinodritwik@gmail.com">
+                    <span>SEND AN EMAIL</span>
+                    <span class="action-arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Card 02: Phone & WhatsApp -->
+              <div class="contact-card-glass" data-contact-index="2" id="contact-card-phone">
+                <div class="contact-card-glow-edge" aria-hidden="true"></div>
+                <div class="contact-card-light-sweep" aria-hidden="true"></div>
+                <div class="contact-card-top">
+                  <span class="contact-card-tag">// DIRECT LINE &amp; CHAT</span>
+                  <span class="contact-card-icon" aria-hidden="true">☎</span>
+                </div>
+                <div class="contact-card-main">
+                  <span class="contact-card-label">PHONE</span>
+                  <a href="tel:+917561081369" class="contact-card-value phone-link" aria-label="Call +91 7561081369">
+                    +91 7561081369
+                  </a>
+                </div>
+                <div class="contact-card-footer">
+                  <a href="https://wa.me/917561081369" target="_blank" rel="noopener noreferrer" class="contact-action-btn whatsapp-action" id="whatsapp-contact-link" aria-label="Chat on WhatsApp with +91 7561081369">
+                    <span class="wa-indicator">●</span>
+                    <span>LET'S CHAT ON WHATSAPP</span>
+                    <span class="action-arrow">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Card 03: Location -->
+              <div class="contact-card-glass" data-contact-index="3" id="contact-card-location">
+                <div class="contact-card-glow-edge" aria-hidden="true"></div>
+                <div class="contact-card-light-sweep" aria-hidden="true"></div>
+                <div class="contact-card-top">
+                  <span class="contact-card-tag">// BASE &amp; TIMEZONE</span>
+                  <span class="contact-card-icon" aria-hidden="true">⌖</span>
+                </div>
+                <div class="contact-card-main">
+                  <span class="contact-card-label">LOCATION</span>
+                  <div class="contact-card-value location-text">
+                    Kozhikode, Kerala, India
+                  </div>
+                </div>
+                <div class="contact-card-footer">
+                  <span class="location-status-badge">
+                    <span class="status-pulse-dot"></span>
+                    <span>IST (UTC+5:30) · Global Remote Availability</span>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Prominent Connect Button to WhatsApp directly -->
+            <div class="contact-cta-wrapper" id="contact-cta-block">
+              <a href="https://wa.me/917561081369" target="_blank" rel="noopener noreferrer" class="contact-prominent-cta" id="contact-prominent-btn" aria-label="Connect with Ritwik Vinod on WhatsApp">
+                <span class="cta-glimmer" aria-hidden="true"></span>
+                <span class="cta-wa-dot" aria-hidden="true">●</span>
+                <span class="cta-text">CONNECT ON WHATSAPP</span>
+                <span class="cta-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <div class="contact-disciplines-strip">
+                <span class="disc-item">DIGITAL MARKETING</span>
+                <span class="disc-dot">·</span>
+                <span class="disc-item">SEO</span>
+                <span class="disc-dot">·</span>
+                <span class="disc-item">SOCIAL MEDIA</span>
+                <span class="disc-dot">·</span>
+                <span class="disc-item">PERFORMANCE GROWTH</span>
+              </div>
+            </div>
+
+            <!-- Minimal Editorial Footer -->
+            <footer class="portfolio-editorial-footer" id="portfolio-footer">
+              <div class="footer-divider-line" aria-hidden="true"></div>
+              <div class="footer-content-row">
+                <span class="footer-copyright">© RITWIK VINOD</span>
+                <span class="footer-tagline">BUILT WITH CREATIVITY &amp; PURPOSE</span>
+              </div>
+            </footer>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- Functional Section Targets for smooth scroll navigation -->
+      <div id="home" class="scroll-anchor" style="top: 0;"></div>
+      <div id="about" class="scroll-anchor" style="top: 22%;"></div>
+      <div id="expertise" class="scroll-anchor" style="top: 40%;"></div>
+      <div id="experience" class="scroll-anchor" style="top: 56%;"></div>
+      <div id="education" class="scroll-anchor" style="top: 78%;"></div>
+      <div id="contact" class="scroll-anchor" style="top: 96%;"></div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1380,7 +1380,7 @@ body {
 }
 
 /* ==========================================================================
-   4. WORK EXPERIENCE SECTION (Floating Cinematic Career Timeline)
+   4. WORK EXPERIENCE SECTION (Clean, Reliable, Simple Timeline)
    ========================================================================== */
 .experience-section-overlay {
   position: absolute;
@@ -1390,11 +1390,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 82px 5.5vw 24px 5.5vw;
+  padding: 78px 5.5vw 20px 5.5vw;
   pointer-events: none;
   z-index: 15;
   opacity: 0;
-  will-change: transform, opacity;
   overflow: hidden;
 }
 
@@ -1426,9 +1425,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex-shrink: 0;
-  will-change: transform, opacity, filter;
 }
 
 .experience-eyebrow {
@@ -1446,7 +1444,7 @@ body {
 .experience-heading {
   font-family: 'Space Grotesk', 'Sora', sans-serif;
   font-weight: 800;
-  font-size: clamp(30px, 3.5vw, 48px);
+  font-size: clamp(28px, 3.5vw, 46px);
   line-height: 0.95;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -1456,7 +1454,7 @@ body {
 
 .experience-subtitle {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(13px, 0.95vw, 15px);
+  font-size: clamp(12.5px, 0.95vw, 14.5px);
   color: rgba(240, 235, 238, 0.76);
   margin-top: 6px;
   font-weight: 400;
@@ -1472,247 +1470,137 @@ body {
     rgba(255, 255, 255, 0.15) 30%,
     rgba(255, 255, 255, 0.05) 100%
   );
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
-/* Timeline Stage */
+/* Timeline Stage - No mask clipping, reliable clean container */
 .experience-timeline-stage {
   position: relative;
   width: 100%;
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  margin-top: 8px;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12px, black calc(100% - 35px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12px, black calc(100% - 35px), transparent 100%);
+  margin-top: 4px;
 }
 
-/* Central Spine */
-.timeline-vertical-spine {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.timeline-spine-track {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.timeline-spine-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background: linear-gradient(180deg, rgba(255, 51, 102, 0.4) 0%, #ff3366 70%, #ff6699 100%);
-  box-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
-  transform-origin: top;
-  transition: height 0.08s linear;
-}
-
-.timeline-spine-glow-head {
-  position: absolute;
-  left: 50%;
-  top: 0%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 10px #ff3366, 0 0 20px rgba(255, 51, 102, 0.5);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  transition: top 0.08s linear;
-}
-
-/* Milestones Track (moves upward as user scrolls) */
+/* Milestones Track */
 .experience-milestones-track {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 16px 0 300px 0;
-  will-change: transform;
+  gap: 28px;
+  padding: 8px 0 160px 0;
 }
 
-/* Asymmetrical Alternating Panels with Premium Vertical Scroll-Reveal */
+/* Clean, Static Timeline Spine Line */
+.timeline-vertical-spine {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  bottom: 30px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 51, 102, 0.6) 0%, rgba(255, 51, 102, 0.35) 75%, rgba(255, 51, 102, 0.15) 100%);
+  box-shadow: 0 0 6px rgba(255, 51, 102, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Milestone Panel - Always 100% Visible Immediately */
 .experience-milestone-panel {
   position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
-  will-change: transform, opacity;
-  opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
-
-/* Natural stagger curve between experience cards */
-.experience-milestone-panel[data-exp-index="1"] { transition-delay: 0.00s; }
-.experience-milestone-panel[data-exp-index="2"] { transition-delay: 0.06s; }
-.experience-milestone-panel[data-exp-index="3"] { transition-delay: 0.12s; }
-.experience-milestone-panel[data-exp-index="4"] { transition-delay: 0.18s; }
-.experience-milestone-panel[data-exp-index="5"] { transition-delay: 0.24s; }
-.experience-milestone-panel[data-exp-index="6"] { transition-delay: 0.30s; }
 
 /* Desktop Alternating Column Alignment */
 .experience-milestone-panel.milestone-left {
   justify-content: flex-start;
-  padding-right: 53%;
+  padding-right: calc(50% + 36px);
+  padding-left: 0;
 }
 
 .experience-milestone-panel.milestone-right {
   justify-content: flex-end;
-  padding-left: 53%;
+  padding-left: calc(50% + 36px);
+  padding-right: 0;
 }
 
-/* Revealed State via IntersectionObserver / Scroll Progress */
-.experience-milestone-panel.is-revealed {
-  opacity: 0.85;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Active Highlighted State */
-.experience-milestone-panel.is-active-exp {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  z-index: 5;
-}
-
-/* Center Marker Node */
+/* Static Timeline Marker Node */
 .milestone-marker-wrapper {
   position: absolute;
   left: 50%;
-  top: 20px;
-  transform: translate(-50%, 0);
+  top: 16px;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  z-index: 10;
+  gap: 5px;
+  z-index: 3;
   pointer-events: none;
 }
 
 .milestone-marker-node {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #090307;
-  border: 1.5px solid rgba(255, 255, 255, 0.20);
+  border: 1.5px solid #ff3366;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.35s ease,
-              background 0.35s ease,
-              box-shadow 0.35s ease;
+  box-shadow: 0 0 12px rgba(255, 51, 102, 0.4), 0 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .milestone-num {
   font-family: 'Space Grotesk', monospace, sans-serif;
-  font-size: 12.5px;
+  font-size: 11px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.65);
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.milestone-ping-ring {
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 51, 102, 0.5);
-  opacity: 0;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  color: #ffffff;
 }
 
 .milestone-status-badge {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #ff3366;
-  background: rgba(255, 51, 102, 0.12);
-  border: 1px solid rgba(255, 51, 102, 0.4);
-  padding: 2px 7px;
-  border-radius: 20px;
+  background: rgba(255, 51, 102, 0.14);
+  border: 1px solid rgba(255, 51, 102, 0.45);
+  padding: 2px 6px;
+  border-radius: 12px;
   white-space: nowrap;
 }
 
-/* Active Highlighted Milestone Marker */
-.experience-milestone-panel.is-active-exp .milestone-marker-node {
-  border-color: #ff3366;
-  background: rgba(255, 51, 102, 0.20);
-  transform: scale(1.12);
-  box-shadow: 0 0 16px rgba(255, 51, 102, 0.7), 0 0 30px rgba(255, 51, 102, 0.35);
-}
-
-.experience-milestone-panel.is-active-exp .milestone-num {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
-}
-
-.experience-milestone-panel.is-active-exp .milestone-ping-ring {
-  opacity: 1;
-  animation: pingRing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes pingRing {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  70%, 100% { transform: scale(1.4); opacity: 0; }
-}
-
-/* Editorial Glass Card */
+/* Editorial Glass Card - Immediately Rendered & Legible */
 .milestone-card-glass {
   width: 100%;
-  background: rgba(14, 5, 12, 0.76);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 6px;
+  background: rgba(14, 5, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
   padding: 20px 24px;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
   position: relative;
-  overflow: hidden;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.28s ease,
-              box-shadow 0.28s ease,
-              background 0.28s ease;
+  overflow: visible;
+  opacity: 1 !important;
+  transform: none !important;
+  max-height: none !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.milestone-card-glow-edge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, #ff3366 50%, transparent 100%);
-  opacity: 0.2;
-  transition: opacity 0.35s ease;
-}
-
-/* Hover & Active Card State */
-.experience-milestone-panel:hover .milestone-card-glass,
-.experience-milestone-panel.is-active-exp .milestone-card-glass {
-  border-color: rgba(255, 51, 102, 0.45);
-  background: rgba(20, 6, 17, 0.88);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 51, 102, 0.20);
-}
-
-.experience-milestone-panel:hover .milestone-card-glow-edge,
-.experience-milestone-panel.is-active-exp .milestone-card-glow-edge {
-  opacity: 1;
+.experience-milestone-panel:hover .milestone-card-glass {
+  border-color: rgba(255, 51, 102, 0.55);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.95), 0 0 24px rgba(255, 51, 102, 0.18);
 }
 
 /* Card Content Typography */
@@ -1732,7 +1620,7 @@ body {
 .milestone-period {
   display: inline-flex;
   align-items: center;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   font-weight: 500;
 }
 
@@ -1744,7 +1632,7 @@ body {
 }
 
 .milestone-location {
-  color: rgba(255, 255, 255, 0.48);
+  color: rgba(255, 255, 255, 0.50);
 }
 
 .milestone-role {
@@ -1755,14 +1643,7 @@ body {
   letter-spacing: -0.015em;
   color: #ffffff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
-  margin-bottom: 5px;
-  transition: color 0.25s ease;
-}
-
-.experience-milestone-panel:hover .milestone-role,
-.experience-milestone-panel.is-active-exp .milestone-role {
-  color: #ffffff;
-  text-shadow: 0 0 16px rgba(255, 51, 102, 0.4);
+  margin-bottom: 8px;
 }
 
 .milestone-company-wrap {
@@ -1779,38 +1660,28 @@ body {
   flex-wrap: wrap;
 }
 
-/* Company Logo Badge Container - Smooth Scale and Opacity Reveal */
+/* Company Logo Badge Container - Always Visible Beside Company Name */
 .milestone-logo-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 32px;
-  padding: 3px 6px;
+  padding: 2.5px 5px;
   background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
   flex-shrink: 0;
   overflow: hidden;
-  opacity: 0.75;
-  transform: scale(0.96);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.experience-milestone-panel.is-revealed .milestone-logo-badge {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.experience-milestone-panel.is-active-exp .milestone-logo-badge,
-.experience-milestone-panel:hover .milestone-logo-badge,
-.milestone-logo-badge:hover {
-  opacity: 1;
+.milestone-logo-badge:hover,
+.experience-milestone-panel:hover .milestone-logo-badge {
   transform: scale(1.04);
-  box-shadow: 0 4px 14px rgba(255, 51, 102, 0.35), 0 0 0 1.5px rgba(255, 51, 102, 0.65);
+  box-shadow: 0 4px 12px rgba(255, 51, 102, 0.35);
 }
 
 .milestone-company-logo {
@@ -1820,11 +1691,6 @@ body {
   display: block;
   user-select: none;
   pointer-events: none;
-  transition: transform 0.3s ease;
-}
-
-.experience-milestone-panel:hover .milestone-company-logo {
-  transform: scale(1.02);
 }
 
 .company-accent {
@@ -1863,8 +1729,7 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 12.5px;
   line-height: 1.55;
-  color: rgba(240, 235, 238, 0.82);
-  transition: color 0.25s ease, opacity 0.3s ease;
+  color: rgba(240, 235, 238, 0.85);
 }
 
 .bullet-crimson-dash {
@@ -1906,18 +1771,17 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 3px 8px;
   border-radius: 3px;
-  transition: all 0.25s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
-.experience-milestone-panel:hover .exp-tag,
-.experience-milestone-panel.is-active-exp .exp-tag {
-  border-color: rgba(255, 51, 102, 0.35);
-  color: rgba(255, 255, 255, 0.92);
+.experience-milestone-panel:hover .exp-tag {
+  border-color: rgba(255, 51, 102, 0.45);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* ==========================================================================
@@ -1927,25 +1791,26 @@ body {
 /* Laptop (769px to 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
   .experience-section-overlay {
-    padding: 76px 4.5vw 20px 4.5vw;
+    padding: 74px 4.5vw 16px 4.5vw;
   }
   .experience-heading {
     font-size: clamp(28px, 3.2vw, 38px);
   }
   .experience-milestone-panel.milestone-left {
-    padding-right: 52%;
+    padding-right: calc(50% + 28px);
   }
   .experience-milestone-panel.milestone-right {
-    padding-left: 52%;
+    padding-left: calc(50% + 28px);
   }
 }
 
 /* Tablet (481px to 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .experience-section-overlay {
-    padding: 66px 20px 16px 20px;
+    padding: 64px 20px 14px 20px;
     height: 100%;
     height: 100dvh;
+    box-sizing: border-box;
   }
   .experience-content-wrapper {
     width: 100%;
@@ -1960,7 +1825,7 @@ body {
     margin-bottom: 3px;
   }
   .experience-heading {
-    font-size: clamp(24px, 4vw, 30px);
+    font-size: clamp(22px, 3.8vw, 28px);
     line-height: 1.05;
   }
   .experience-subtitle {
@@ -1972,33 +1837,30 @@ body {
     margin-top: 6px;
   }
   .experience-timeline-stage {
-    margin-top: 6px;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 8px, black calc(100% - 20px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8px, black calc(100% - 20px), transparent 100%);
+    margin-top: 4px;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
   .experience-milestones-track {
-    gap: 22px;
-    padding: 6px 0 260px 0;
+    gap: 20px;
+    padding: 6px 0 160px 0;
   }
   .timeline-vertical-spine {
-    left: 20px;
+    left: 18px;
+    top: 14px;
+    bottom: 24px;
     transform: none;
   }
   .experience-milestone-panel.milestone-left,
   .experience-milestone-panel.milestone-right {
-    padding-left: 48px !important;
+    padding-left: 44px !important;
     padding-right: 0 !important;
     justify-content: flex-start !important;
     width: 100%;
     box-sizing: border-box;
-    opacity: 0.92;
-    transform: translate3d(0, 0, 0) !important;
-  }
-  .experience-milestone-panel.is-active-exp {
-    opacity: 1 !important;
   }
   .milestone-marker-wrapper {
-    left: 20px;
+    left: 18px;
     top: 14px;
     transform: translateX(-50%);
   }
@@ -2007,20 +1869,16 @@ body {
     height: 28px;
   }
   .milestone-num {
-    font-size: 10.5px;
+    font-size: 10px;
   }
   .milestone-status-badge {
     font-size: 8px;
     padding: 1.5px 5px;
-    letter-spacing: 0.12em;
   }
   .milestone-card-glass {
     padding: 14px 16px;
-    max-height: calc(100dvh - 160px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 51, 102, 0.4) transparent;
+    max-height: none !important;
+    overflow: visible !important;
   }
   .milestone-role {
     font-size: 15px;
@@ -2037,10 +1895,10 @@ body {
   }
 }
 
-/* Mobile (320px to 480px) */
+/* Mobile (361px to 480px) */
 @media (max-width: 480px) {
   .experience-section-overlay {
-    padding: 58px 12px 10px 12px;
+    padding: 60px 14px 12px 14px;
     height: 100%;
     height: 100dvh;
     box-sizing: border-box;
@@ -2054,8 +1912,8 @@ body {
     flex-shrink: 0;
   }
   .experience-eyebrow {
-    font-size: 9.5px;
-    letter-spacing: 0.16em;
+    font-size: 10px;
+    letter-spacing: 0.18em;
     margin-bottom: 2px;
   }
   .experience-heading {
@@ -2074,69 +1932,57 @@ body {
   }
   .experience-timeline-stage {
     margin-top: 4px;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 6px, black calc(100% - 14px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6px, black calc(100% - 14px), transparent 100%);
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
   .experience-milestones-track {
     gap: 16px;
-    padding: 4px 0 220px 0;
+    padding: 4px 0 160px 0;
   }
   .timeline-vertical-spine {
-    left: 14px;
+    left: 15px;
+    top: 12px;
+    bottom: 20px;
     transform: none;
-  }
-  .timeline-spine-glow-head {
-    width: 8px;
-    height: 8px;
   }
   .experience-milestone-panel.milestone-left,
   .experience-milestone-panel.milestone-right {
-    padding-left: 34px !important;
+    padding-left: 36px !important;
     padding-right: 0 !important;
     justify-content: flex-start !important;
     width: 100%;
     box-sizing: border-box;
-    opacity: 0.92;
-    transform: translate3d(0, 0, 0) !important;
-  }
-  .experience-milestone-panel.is-active-exp {
-    opacity: 1 !important;
   }
   .milestone-marker-wrapper {
-    left: 14px;
-    top: 10px;
+    left: 15px;
+    top: 12px;
     transform: translateX(-50%);
     gap: 4px;
   }
   .milestone-marker-node {
     width: 24px;
     height: 24px;
-    border-width: 1.2px;
+    border-width: 1.5px;
   }
   .milestone-num {
     font-size: 9px;
   }
   .milestone-status-badge {
     font-size: 7px;
-    padding: 1px 3.5px;
+    padding: 1px 4px;
     letter-spacing: 0.08em;
-    border-radius: 8px;
-    white-space: nowrap;
   }
   .milestone-card-glass {
-    padding: 10px 11px;
+    padding: 12px 13px;
     border-radius: 6px;
     width: 100%;
     box-sizing: border-box;
-    max-height: calc(100dvh - 145px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 51, 102, 0.4) transparent;
+    max-height: none !important;
+    overflow: visible !important;
   }
   .milestone-meta-row {
     font-size: 9.5px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     gap: 6px;
     flex-wrap: wrap;
   }
@@ -2147,21 +1993,18 @@ body {
     font-size: 9px;
   }
   .milestone-role {
-    font-size: 13.5px;
-    line-height: 1.25;
-    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1.30;
+    margin-bottom: 5px;
   }
   .milestone-company-wrap {
-    gap: 6px;
-    margin-bottom: 7px;
+    gap: 8px;
+    margin-bottom: 8px;
     align-items: center;
   }
-  .milestone-company-info {
-    gap: 4px;
-  }
   .milestone-logo-badge {
-    width: 36px;
-    height: 24px;
+    width: 38px;
+    height: 25px;
     padding: 2px 3px;
     border-radius: 4px;
     flex-shrink: 0;
@@ -2170,69 +2013,92 @@ body {
     font-size: 11px;
   }
   .milestone-company {
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.04em;
     line-height: 1.25;
   }
   .milestone-highlights-list {
-    gap: 4px;
-    margin-bottom: 7px;
+    gap: 5px;
+    margin-bottom: 8px;
   }
   .milestone-bullet {
-    font-size: 11px;
-    line-height: 1.45;
-    gap: 5px;
+    font-size: 11.5px;
+    line-height: 1.48;
+    gap: 6px;
   }
   .bullet-crimson-dash {
     font-size: 10px;
     margin-top: 0px;
   }
   .metric-highlight {
-    font-size: 10.5px;
+    font-size: 11px;
     padding: 0 3px;
   }
   .milestone-skills-tags {
-    gap: 3.5px;
+    gap: 4px;
     padding-top: 2px;
   }
   .exp-tag {
-    font-size: 8.5px;
-    padding: 1.5px 5.5px;
+    font-size: 9px;
+    padding: 2px 6px;
     border-radius: 3px;
   }
 }
 
-/* Extra small mobile (320px - 360px) */
+/* Extra small mobile (320px to 360px) */
 @media (max-width: 360px) {
   .experience-section-overlay {
-    padding: 56px 8px 8px 8px;
+    padding: 56px 8px 10px 8px;
+  }
+  .experience-heading {
+    font-size: 19px;
+  }
+  .experience-subtitle {
+    font-size: 10.5px;
+  }
+  .timeline-vertical-spine {
+    left: 14px;
+    top: 10px;
+    bottom: 16px;
   }
   .experience-milestone-panel.milestone-left,
   .experience-milestone-panel.milestone-right {
-    padding-left: 30px !important;
-  }
-  .timeline-vertical-spine {
-    left: 12px;
+    padding-left: 36px !important;
   }
   .milestone-marker-wrapper {
-    left: 12px;
+    left: 14px;
+    top: 10px;
   }
   .milestone-marker-node {
     width: 22px;
     height: 22px;
+    border-width: 1.2px;
   }
   .milestone-num {
     font-size: 8.5px;
   }
+  .milestone-status-badge {
+    font-size: 6.5px;
+    padding: 1px 3px;
+    letter-spacing: 0.04em;
+    border-radius: 6px;
+  }
   .milestone-card-glass {
-    padding: 8px 9px;
+    padding: 10px 10px;
   }
   .milestone-role {
-    font-size: 12.5px;
+    font-size: 13px;
+  }
+  .milestone-company {
+    font-size: 10px;
   }
   .milestone-bullet {
     font-size: 10.5px;
-    line-height: 1.4;
+    line-height: 1.42;
+  }
+  .exp-tag {
+    font-size: 8px;
+    padding: 1.5px 4.5px;
   }
 }
 

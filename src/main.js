@@ -38,40 +38,9 @@ if (byjuLogoEl && byjuLogoUrl) byjuLogoEl.src = byjuLogoUrl;
 const experienceSection = document.getElementById('work-experience');
 const experienceHeader = document.getElementById('experience-header');
 const experienceStage = document.getElementById('experience-stage');
-const timelineProgress = document.getElementById('timeline-spine-progress');
-const timelineGlowHead = document.getElementById('timeline-spine-glow-head');
 const milestonesTrack = document.getElementById('experience-milestones-track');
 const milestonePanels = document.querySelectorAll('.experience-milestone-panel');
 
-// Premium Scroll-Triggered Reveal via IntersectionObserver
-let experienceObserver = null;
-if (typeof IntersectionObserver !== 'undefined' && milestonePanels.length > 0) {
-  experienceObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-        }
-      });
-    },
-    {
-      root: null,
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.15,
-    }
-  );
-  milestonePanels.forEach((panel) => experienceObserver.observe(panel));
-} else {
-  // Resilient fallback for environments without IntersectionObserver
-  milestonePanels.forEach((panel) => panel.classList.add('is-revealed'));
-}
-
-window.addEventListener('beforeunload', () => {
-  if (experienceObserver) {
-    experienceObserver.disconnect();
-    experienceObserver = null;
-  }
-});
 
 // 04 / Education & Beyond Elements
 const educationSection = document.getElementById('education-section');
@@ -724,118 +693,39 @@ function updateScrollAnimations(progress) {
     }
   }
 
-  // 4. Work Experience Section (Active from 0.51 to ~0.71)
+  // 4. Work Experience Section (Active from 0.50 to ~0.72)
   if (experienceSection && experienceHeader) {
-    if (progress < 0.51) {
+    if (progress < 0.50) {
       experienceSection.style.visibility = 'hidden';
       experienceSection.style.opacity = '0';
       experienceSection.style.pointerEvents = 'none';
-      experienceHeader.style.opacity = '0';
-      experienceHeader.style.filter = 'blur(8px)';
-      experienceHeader.style.transform = 'translate3d(0, 30px, 0)';
-
-      const expHeaderLine = experienceHeader.querySelector('.experience-header-line');
-      if (expHeaderLine) expHeaderLine.style.transform = 'scaleX(0)';
-
-      if (timelineProgress) timelineProgress.style.height = '0%';
-      if (timelineGlowHead) timelineGlowHead.style.top = '0%';
       if (milestonesTrack) milestonesTrack.style.transform = 'translate3d(0, 0, 0)';
-
-      milestonePanels.forEach((panel) => {
-        panel.classList.remove('is-active-exp');
-      });
-    } else if (progress <= 0.71) {
+    } else if (progress <= 0.72) {
       experienceSection.style.visibility = 'visible';
-      const tEnter = clamp((progress - 0.51) / 0.015, 0, 1);
-      let expOpacity = tEnter;
-      let expTranslateY = 0;
-      if (progress > 0.68) {
-        const tExit = (progress - 0.68) / 0.03;
-        expOpacity = Math.max(0, 1 - tExit);
-        expTranslateY = tExit * 35;
-      }
+      experienceSection.style.opacity = '1';
+      experienceSection.style.pointerEvents = 'auto';
+      experienceSection.style.transform = 'none';
 
-      experienceSection.style.opacity = expOpacity.toFixed(3);
-      experienceSection.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, -${expTranslateY.toFixed(1)}px, 0)`;
-      experienceSection.style.pointerEvents = expOpacity > 0.05 ? 'auto' : 'none';
-
-      // Header reveal (0.51 -> 0.535)
-      const tHead = clamp((progress - 0.51) / 0.025, 0, 1);
-      experienceHeader.style.opacity = tHead.toFixed(3);
-      experienceHeader.style.filter = prefersReducedMotion ? 'none' : `blur(${((1 - tHead) * 8).toFixed(1)}px)`;
-      experienceHeader.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, ${((1 - tHead) * 20).toFixed(1)}px, 0)`;
+      // Header is immediately visible with no blur or delay
+      experienceHeader.style.opacity = '1';
+      experienceHeader.style.filter = 'none';
+      experienceHeader.style.transform = 'none';
 
       const expHeaderLine = experienceHeader.querySelector('.experience-header-line');
       if (expHeaderLine) {
-        expHeaderLine.style.transformOrigin = 'left center';
-        expHeaderLine.style.transform = `scaleX(${tHead.toFixed(3)})`;
+        expHeaderLine.style.transform = 'scaleX(1)';
       }
 
-      // Timeline spine progress & track scrolling (0.535 -> 0.68)
-      const tTimeline = clamp((progress - 0.535) / 0.145, 0, 1);
-
-      if (timelineProgress) {
-        timelineProgress.style.height = `${(tTimeline * 100).toFixed(1)}%`;
-      }
-      if (timelineGlowHead) {
-        timelineGlowHead.style.top = `${(tTimeline * 100).toFixed(1)}%`;
-      }
-
-      let activeIndex = 0;
-      if (milestonesTrack && experienceStage && milestonePanels.length > 0) {
+      // Clean, predictable linear scroll through the experience track
+      if (milestonesTrack && experienceStage) {
         const stageHeight = experienceStage.clientHeight || 600;
-        const trackHeight = milestonesTrack.scrollHeight || 2400;
-        const maxTravel = Math.max(0, trackHeight - stageHeight);
-        const isMobileScreen = window.innerWidth <= 768;
-
-        const panelTargets = Array.from(milestonePanels).map((panel, i) => {
-          if (i === 0) return 0;
-          if (isMobileScreen) {
-            // On mobile/tablet, align top of panel neatly with the top of stage
-            const ideal = panel.offsetTop - 6;
-            return Math.max(0, Math.min(maxTravel, ideal));
-          }
-          const panelCenter = panel.offsetTop + (panel.offsetHeight / 2);
-          const ideal = panelCenter - (stageHeight / 2);
-          return Math.max(0, Math.min(maxTravel, ideal));
-        });
-
-        const step = tTimeline * (milestonePanels.length - 1);
-        const baseIdx = Math.floor(step);
-        const sub = step - baseIdx;
-
-        let transition = 0;
-        if (sub > 0.55) {
-          const t = (sub - 0.55) / 0.45;
-          transition = t * t * (3 - 2 * t);
-        }
-
-        const nextIdx = Math.min(milestonePanels.length - 1, baseIdx + 1);
-        const targetA = panelTargets[baseIdx];
-        const targetB = panelTargets[nextIdx];
-        const currentTravel = targetA + transition * (targetB - targetA);
+        const trackHeight = milestonesTrack.scrollHeight || 1800;
+        const maxTravel = Math.max(0, trackHeight - stageHeight + 20);
+        const tScroll = clamp((progress - 0.52) / 0.18, 0, 1);
+        const currentTravel = tScroll * maxTravel;
 
         milestonesTrack.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, -${currentTravel.toFixed(1)}px, 0)`;
-        activeIndex = Math.min(milestonePanels.length - 1, Math.max(0, Math.round(step)));
       }
-
-      milestonePanels.forEach((panel, idx) => {
-        // Natural scroll-reveal as timeline approaches or passes the panel
-        if (idx <= activeIndex + 1 || tTimeline > 0.05) {
-          panel.classList.add('is-revealed');
-        }
-
-        if (idx === activeIndex) {
-          panel.classList.add('is-active-exp');
-        } else {
-          panel.classList.remove('is-active-exp');
-        }
-
-        const bullets = panel.querySelectorAll('.milestone-bullet');
-        bullets.forEach((bullet) => {
-          bullet.style.opacity = '1';
-        });
-      });
     } else {
       experienceSection.style.visibility = 'hidden';
       experienceSection.style.opacity = '0';
@@ -1303,7 +1193,7 @@ const scrollMap = {
   home: 0,
   about: 0.22,      // Professional Summary
   expertise: 0.40,  // Skills & Expertise
-  experience: 0.535, // Work Experience (starts directly on 01 - Reporter Broadcasting Company)
+  experience: 0.51, // Work Experience (starts immediately on 01 - Reporter Broadcasting Company)
   education: 0.78,  // Education & Beyond
   contact: 0.96,    // Contact & Let's Connect
 };

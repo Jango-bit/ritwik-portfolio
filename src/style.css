@@ -335,6 +335,45 @@ body {
   user-select: none;
 }
 
+.nav-linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.nav-linkedin-link:hover {
+  color: #ffffff;
+  border-color: #ff3366;
+  background: rgba(255, 51, 102, 0.14);
+  box-shadow: 0 0 16px rgba(255, 51, 102, 0.45);
+  transform: translateY(-1px);
+}
+
+.nav-linkedin-icon {
+  color: #ff3366;
+  transition: transform 0.25s ease;
+}
+
+.nav-linkedin-link:hover .nav-linkedin-icon {
+  transform: scale(1.15);
+}
+
+.mobile-nav-ctas-group {
+  display: none;
+}
+
 .mobile-nav-cta {
   display: none;
 }
@@ -1119,29 +1158,55 @@ body {
     text-shadow: 0 0 16px rgba(255, 51, 102, 0.6);
   }
 
+  .mobile-nav-ctas-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
   .mobile-nav-cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-top: 24px;
-    padding: 14px 20px;
+    margin-top: 0;
+    padding: 12px 18px;
     background: linear-gradient(135deg, #ff3366 0%, #c41849 100%);
     color: #ffffff;
     text-decoration: none;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border-radius: 4px;
     box-shadow: 0 6px 20px rgba(255, 51, 102, 0.45);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .mobile-nav-cta.mobile-nav-linkedin {
+    background: linear-gradient(135deg, rgba(0, 119, 181, 0.35) 0%, rgba(20, 6, 17, 0.95) 100%);
+    border: 1px solid rgba(0, 119, 181, 0.6);
+    box-shadow: 0 4px 16px rgba(0, 119, 181, 0.25);
+  }
+
+  .mobile-nav-linkedin-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .mobile-nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 26px rgba(255, 51, 102, 0.6);
+  }
+
+  .mobile-nav-cta.mobile-nav-linkedin:hover {
+    border-color: #0077b5;
+    box-shadow: 0 8px 24px rgba(0, 119, 181, 0.45);
   }
 }
 
@@ -1446,24 +1511,24 @@ body {
   left: 0;
   width: 100%;
   height: 0%;
-  background: linear-gradient(180deg, #ff3366 0%, #ff1155 70%, #ff6699 100%);
-  box-shadow: 0 0 12px rgba(255, 51, 102, 0.8), 0 0 24px rgba(255, 51, 102, 0.4);
+  background: linear-gradient(180deg, rgba(255, 51, 102, 0.4) 0%, #ff3366 70%, #ff6699 100%);
+  box-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
   transform-origin: top;
-  transition: height 0.1s linear;
+  transition: height 0.08s linear;
 }
 
 .timeline-spine-glow-head {
   position: absolute;
   left: 50%;
   top: 0%;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 0 16px #ff3366, 0 0 32px #ff3366;
+  box-shadow: 0 0 10px #ff3366, 0 0 20px rgba(255, 51, 102, 0.5);
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: top 0.1s linear;
+  transition: top 0.08s linear;
 }
 
 /* Milestones Track (moves upward as user scrolls) */
@@ -1477,16 +1542,29 @@ body {
   will-change: transform;
 }
 
-/* Asymmetrical Alternating Panels */
+/* Asymmetrical Alternating Panels with Premium Vertical Scroll-Reveal */
 .experience-milestone-panel {
   position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
+  box-sizing: border-box;
   will-change: transform, opacity;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Natural stagger curve between experience cards */
+.experience-milestone-panel[data-exp-index="1"] { transition-delay: 0.00s; }
+.experience-milestone-panel[data-exp-index="2"] { transition-delay: 0.06s; }
+.experience-milestone-panel[data-exp-index="3"] { transition-delay: 0.12s; }
+.experience-milestone-panel[data-exp-index="4"] { transition-delay: 0.18s; }
+.experience-milestone-panel[data-exp-index="5"] { transition-delay: 0.24s; }
+.experience-milestone-panel[data-exp-index="6"] { transition-delay: 0.30s; }
+
+/* Desktop Alternating Column Alignment */
 .experience-milestone-panel.milestone-left {
   justify-content: flex-start;
   padding-right: 53%;
@@ -1497,23 +1575,17 @@ body {
   padding-left: 53%;
 }
 
-/* Floating Animation Variety */
-.milestone-left .milestone-card-glass {
-  animation: floatLeftPanel 6s ease-in-out infinite;
+/* Revealed State via IntersectionObserver / Scroll Progress */
+.experience-milestone-panel.is-revealed {
+  opacity: 0.85;
+  transform: translate3d(0, 0, 0);
 }
 
-.milestone-right .milestone-card-glass {
-  animation: floatRightPanel 7s ease-in-out infinite;
-}
-
-@keyframes floatLeftPanel {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes floatRightPanel {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+/* Active Highlighted State */
+.experience-milestone-panel.is-active-exp {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  z-index: 5;
 }
 
 /* Center Marker Node */
@@ -1535,7 +1607,7 @@ body {
   height: 36px;
   border-radius: 50%;
   background: #090307;
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.20);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1545,15 +1617,14 @@ body {
               border-color 0.35s ease,
               background 0.35s ease,
               box-shadow 0.35s ease;
-  animation: markerIdleFloat 5s ease-in-out infinite;
 }
 
 .milestone-num {
   font-family: 'Space Grotesk', monospace, sans-serif;
   font-size: 12.5px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.85);
-  transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .milestone-ping-ring {
@@ -1579,32 +1650,27 @@ body {
   white-space: nowrap;
 }
 
-/* Active Milestone Marker */
+/* Active Highlighted Milestone Marker */
 .experience-milestone-panel.is-active-exp .milestone-marker-node {
   border-color: #ff3366;
-  background: rgba(255, 51, 102, 0.22);
-  transform: scale(1.15);
-  box-shadow: 0 0 25px rgba(255, 51, 102, 0.9), 0 0 45px rgba(255, 51, 102, 0.45);
+  background: rgba(255, 51, 102, 0.20);
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(255, 51, 102, 0.7), 0 0 30px rgba(255, 51, 102, 0.35);
 }
 
 .experience-milestone-panel.is-active-exp .milestone-num {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 51, 102, 0.8);
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
 }
 
 .experience-milestone-panel.is-active-exp .milestone-ping-ring {
   opacity: 1;
-  animation: pingRing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation: pingRing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 @keyframes pingRing {
   0% { transform: scale(0.95); opacity: 0.8; }
-  70%, 100% { transform: scale(1.45); opacity: 0; }
-}
-
-@keyframes markerIdleFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  70%, 100% { transform: scale(1.4); opacity: 0; }
 }
 
 /* Editorial Glass Card */
@@ -1713,7 +1779,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Company Logo Badge Container */
+/* Company Logo Badge Container - Smooth Scale and Opacity Reveal */
 .milestone-logo-badge {
   display: inline-flex;
   align-items: center;
@@ -1726,15 +1792,25 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
   flex-shrink: 0;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
+  opacity: 0.75;
+  transform: scale(0.96);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
 }
 
+.experience-milestone-panel.is-revealed .milestone-logo-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.experience-milestone-panel.is-active-exp .milestone-logo-badge,
 .experience-milestone-panel:hover .milestone-logo-badge,
 .milestone-logo-badge:hover {
-  transform: translateY(-1px) scale(1.06);
-  box-shadow: 0 4px 14px rgba(255, 51, 102, 0.35), 0 0 0 1.5px rgba(255, 51, 102, 0.7);
+  opacity: 1;
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(255, 51, 102, 0.35), 0 0 0 1.5px rgba(255, 51, 102, 0.65);
 }
 
 .milestone-company-logo {
@@ -1915,6 +1991,11 @@ body {
     justify-content: flex-start !important;
     width: 100%;
     box-sizing: border-box;
+    opacity: 0.92;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .experience-milestone-panel.is-active-exp {
+    opacity: 1 !important;
   }
   .milestone-marker-wrapper {
     left: 20px;
@@ -2015,6 +2096,11 @@ body {
     justify-content: flex-start !important;
     width: 100%;
     box-sizing: border-box;
+    opacity: 0.92;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .experience-milestone-panel.is-active-exp {
+    opacity: 1 !important;
   }
   .milestone-marker-wrapper {
     left: 14px;
@@ -3134,6 +3220,16 @@ body {
   text-align: center;
   position: relative;
   z-index: 20;
+  width: 100%;
+}
+
+.contact-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .contact-prominent-cta {
@@ -3141,9 +3237,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 34px;
+  padding: 13px 28px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3183,6 +3279,33 @@ body {
     0 16px 44px rgba(37, 211, 102, 0.35),
     0 0 32px rgba(255, 51, 102, 0.28);
   color: #ffffff;
+}
+
+/* LinkedIn CTA Button */
+.contact-prominent-cta.contact-linkedin-cta {
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.24) 0%, rgba(255, 51, 102, 0.18) 100%), rgba(16, 7, 20, 0.90);
+  border-color: rgba(0, 119, 181, 0.55);
+  box-shadow: 
+    0 12px 32px rgba(0, 119, 181, 0.20),
+    0 0 20px rgba(255, 51, 102, 0.15);
+}
+
+.contact-prominent-cta.contact-linkedin-cta:hover {
+  border-color: #0077b5;
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.40) 0%, rgba(255, 51, 102, 0.26) 100%), rgba(20, 8, 26, 0.96);
+  box-shadow: 
+    0 16px 44px rgba(0, 119, 181, 0.35),
+    0 0 32px rgba(255, 51, 102, 0.28);
+}
+
+.linkedin-cta-svg {
+  color: #0077b5;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.contact-prominent-cta.contact-linkedin-cta:hover .linkedin-cta-svg {
+  color: #38bdf8;
+  transform: scale(1.15);
 }
 
 .contact-prominent-cta:hover .cta-arrow {
@@ -3238,6 +3361,48 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.footer-social-link:hover {
+  color: #ff3366;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.6);
+}
+
+.footer-social-svg {
+  color: #ff3366;
+  transition: transform 0.25s ease;
+}
+
+.footer-social-link:hover .footer-social-svg {
+  transform: scale(1.15);
+}
+
+.footer-social-divider {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  user-select: none;
 }
 
 .footer-tagline {
@@ -3307,11 +3472,20 @@ button:focus-visible {
   .contact-section-overlay,
   .contact-header,
   .contact-card-glass,
-  .contact-prominent-cta {
+  .contact-prominent-cta,
+  .experience-section-overlay,
+  .experience-header,
+  .experience-milestone-panel,
+  .milestone-card-glass,
+  .milestone-marker-node,
+  .milestone-logo-badge,
+  .timeline-spine-progress,
+  .timeline-spine-glow-head {
     transition: none !important;
     transform: none !important;
     filter: none !important;
     animation: none !important;
+    opacity: 1 !important;
   }
 }
 

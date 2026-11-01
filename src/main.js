@@ -43,6 +43,36 @@ const timelineGlowHead = document.getElementById('timeline-spine-glow-head');
 const milestonesTrack = document.getElementById('experience-milestones-track');
 const milestonePanels = document.querySelectorAll('.experience-milestone-panel');
 
+// Premium Scroll-Triggered Reveal via IntersectionObserver
+let experienceObserver = null;
+if (typeof IntersectionObserver !== 'undefined' && milestonePanels.length > 0) {
+  experienceObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.15,
+    }
+  );
+  milestonePanels.forEach((panel) => experienceObserver.observe(panel));
+} else {
+  // Resilient fallback for environments without IntersectionObserver
+  milestonePanels.forEach((panel) => panel.classList.add('is-revealed'));
+}
+
+window.addEventListener('beforeunload', () => {
+  if (experienceObserver) {
+    experienceObserver.disconnect();
+    experienceObserver = null;
+  }
+});
+
 // 04 / Education & Beyond Elements
 const educationSection = document.getElementById('education-section');
 const waterCanvas = document.getElementById('three-water-canvas');
@@ -713,8 +743,6 @@ function updateScrollAnimations(progress) {
 
       milestonePanels.forEach((panel) => {
         panel.classList.remove('is-active-exp');
-        panel.style.opacity = '0.35';
-        panel.style.transform = 'translate3d(0, 20px, 0)';
       });
     } else if (progress <= 0.71) {
       experienceSection.style.visibility = 'visible';
@@ -792,27 +820,20 @@ function updateScrollAnimations(progress) {
       }
 
       milestonePanels.forEach((panel, idx) => {
-        const panelTrigger = 0.535 + idx * 0.022;
-        const tPanel = clamp((progress - panelTrigger) / 0.022, 0, 1);
+        // Natural scroll-reveal as timeline approaches or passes the panel
+        if (idx <= activeIndex + 1 || tTimeline > 0.05) {
+          panel.classList.add('is-revealed');
+        }
 
         if (idx === activeIndex) {
           panel.classList.add('is-active-exp');
-          panel.style.opacity = Math.max(0.85, tHead).toString();
-          panel.style.transform = prefersReducedMotion ? 'none' : 'translate3d(0, 0, 0) scale(1)';
         } else {
           panel.classList.remove('is-active-exp');
-          const dist = Math.abs(idx - activeIndex);
-          const panelOpacity = Math.max(0.35, 1 - dist * 0.35);
-          panel.style.opacity = (tHead * panelOpacity).toFixed(3);
-          const yOffset = idx > activeIndex ? 15 : -10;
-          panel.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, ${(yOffset * (1 - tPanel * 0.5)).toFixed(1)}px, 0) scale(0.985)`;
         }
 
         const bullets = panel.querySelectorAll('.milestone-bullet');
-        bullets.forEach((bullet, bIdx) => {
-          const bulletTrigger = panelTrigger + bIdx * 0.004;
-          const tBullet = clamp((progress - bulletTrigger) / 0.010, 0, 1);
-          bullet.style.opacity = (idx === activeIndex ? 1 : 0.85 * tBullet).toString();
+        bullets.forEach((bullet) => {
+          bullet.style.opacity = '1';
         });
       });
     } else {

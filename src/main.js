@@ -2,6 +2,9 @@ import './style.css';
 import * as THREE from 'three';
 import seoImgUrl from './Images/Seo.jpg';
 import strategyImgUrl from './Images/strategy.jpg';
+import reporterLogoUrl from './Images/Reporter_TV_2023.jpg';
+import elanceLogoUrl from './Images/elance.123.jpg';
+import byjuLogoUrl from './Images/byju lp.jpg';
 
 const TOTAL_FRAMES = 240;
 const canvas = document.getElementById('animation-canvas');
@@ -22,6 +25,14 @@ const strategyImgEl = document.getElementById('strategy-visual-img');
 
 if (seoImgEl && seoImgUrl) seoImgEl.src = seoImgUrl;
 if (strategyImgEl && strategyImgUrl) strategyImgEl.src = strategyImgUrl;
+
+const reporterLogoEl = document.getElementById('reporter-logo-img');
+const elanceLogoEl = document.getElementById('elance-logo-img');
+const byjuLogoEl = document.getElementById('byju-logo-img');
+
+if (reporterLogoEl && reporterLogoUrl) reporterLogoEl.src = reporterLogoUrl;
+if (elanceLogoEl && elanceLogoUrl) elanceLogoEl.src = elanceLogoUrl;
+if (byjuLogoEl && byjuLogoUrl) byjuLogoEl.src = byjuLogoUrl;
 
 // Work Experience Elements
 const experienceSection = document.getElementById('work-experience');
@@ -146,9 +157,9 @@ function renderFrame(frameIndex) {
   const dw = Math.round(nw * scale);
   const dh = Math.round(nh * scale);
 
-  // Position portrait prominently on the right half while strictly covering the canvas
+  // Position portrait centered on mobile portrait and right-biased on desktop
   const isPortrait = ch > cw;
-  const horizontalFactor = isPortrait ? 0.62 : 0.70;
+  const horizontalFactor = isPortrait ? 0.50 : 0.70;
   let dx = Math.round((cw - dw) * horizontalFactor);
   dx = Math.min(0, Math.max(cw - dw, dx));
 
@@ -576,11 +587,11 @@ function updateScrollAnimations(progress) {
           descCol.style.transform = 'translate3d(0, 10px, 0)';
         }
       });
-    } else if (progress <= 0.53) {
+    } else if (progress <= 0.51) {
       let sectionOpacity = 1;
       let sectionTranslateY = 0;
-      if (progress > 0.49) {
-        const tExit = (progress - 0.49) / 0.04;
+      if (progress > 0.47) {
+        const tExit = (progress - 0.47) / 0.04;
         sectionOpacity = Math.max(0, 1 - tExit);
         sectionTranslateY = tExit * 35;
       }
@@ -588,6 +599,7 @@ function updateScrollAnimations(progress) {
       skillsSection.style.opacity = sectionOpacity.toFixed(3);
       skillsSection.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, -${sectionTranslateY.toFixed(1)}px, 0)`;
       skillsSection.style.pointerEvents = sectionOpacity > 0.05 ? 'auto' : 'none';
+      skillsSection.style.visibility = sectionOpacity > 0.001 ? 'visible' : 'hidden';
 
       // Heading reveal (0.33 -> 0.38)
       const tHead = clamp((progress - 0.33) / 0.04, 0, 1);
@@ -677,6 +689,7 @@ function updateScrollAnimations(progress) {
       });
     } else {
       skillsSection.style.opacity = '0';
+      skillsSection.style.visibility = 'hidden';
       skillsSection.style.pointerEvents = 'none';
     }
   }
@@ -705,7 +718,8 @@ function updateScrollAnimations(progress) {
       });
     } else if (progress <= 0.71) {
       experienceSection.style.visibility = 'visible';
-      let expOpacity = 1;
+      const tEnter = clamp((progress - 0.51) / 0.015, 0, 1);
+      let expOpacity = tEnter;
       let expTranslateY = 0;
       if (progress > 0.68) {
         const tExit = (progress - 0.68) / 0.03;
@@ -717,11 +731,11 @@ function updateScrollAnimations(progress) {
       experienceSection.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, -${expTranslateY.toFixed(1)}px, 0)`;
       experienceSection.style.pointerEvents = expOpacity > 0.05 ? 'auto' : 'none';
 
-      // Header reveal (0.51 -> 0.55)
-      const tHead = clamp((progress - 0.51) / 0.04, 0, 1);
+      // Header reveal (0.51 -> 0.535)
+      const tHead = clamp((progress - 0.51) / 0.025, 0, 1);
       experienceHeader.style.opacity = tHead.toFixed(3);
       experienceHeader.style.filter = prefersReducedMotion ? 'none' : `blur(${((1 - tHead) * 8).toFixed(1)}px)`;
-      experienceHeader.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, ${((1 - tHead) * 30).toFixed(1)}px, 0)`;
+      experienceHeader.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, ${((1 - tHead) * 20).toFixed(1)}px, 0)`;
 
       const expHeaderLine = experienceHeader.querySelector('.experience-header-line');
       if (expHeaderLine) {
@@ -729,8 +743,8 @@ function updateScrollAnimations(progress) {
         expHeaderLine.style.transform = `scaleX(${tHead.toFixed(3)})`;
       }
 
-      // Timeline spine progress & track scrolling (0.54 -> 0.68)
-      const tTimeline = clamp((progress - 0.54) / 0.14, 0, 1);
+      // Timeline spine progress & track scrolling (0.535 -> 0.68)
+      const tTimeline = clamp((progress - 0.535) / 0.145, 0, 1);
 
       if (timelineProgress) {
         timelineProgress.style.height = `${(tTimeline * 100).toFixed(1)}%`;
@@ -744,9 +758,15 @@ function updateScrollAnimations(progress) {
         const stageHeight = experienceStage.clientHeight || 600;
         const trackHeight = milestonesTrack.scrollHeight || 2400;
         const maxTravel = Math.max(0, trackHeight - stageHeight);
+        const isMobileScreen = window.innerWidth <= 768;
 
         const panelTargets = Array.from(milestonePanels).map((panel, i) => {
           if (i === 0) return 0;
+          if (isMobileScreen) {
+            // On mobile/tablet, align top of panel neatly with the top of stage
+            const ideal = panel.offsetTop - 6;
+            return Math.max(0, Math.min(maxTravel, ideal));
+          }
           const panelCenter = panel.offsetTop + (panel.offsetHeight / 2);
           const ideal = panelCenter - (stageHeight / 2);
           return Math.max(0, Math.min(maxTravel, ideal));
@@ -772,18 +792,18 @@ function updateScrollAnimations(progress) {
       }
 
       milestonePanels.forEach((panel, idx) => {
-        const panelTrigger = 0.54 + idx * 0.022;
+        const panelTrigger = 0.535 + idx * 0.022;
         const tPanel = clamp((progress - panelTrigger) / 0.022, 0, 1);
 
         if (idx === activeIndex) {
           panel.classList.add('is-active-exp');
-          panel.style.opacity = '1';
-          panel.style.transform = prefersReducedMotion ? 'none' : 'translate3d(0, 0, 0) scale(1.01)';
+          panel.style.opacity = Math.max(0.85, tHead).toString();
+          panel.style.transform = prefersReducedMotion ? 'none' : 'translate3d(0, 0, 0) scale(1)';
         } else {
           panel.classList.remove('is-active-exp');
           const dist = Math.abs(idx - activeIndex);
-          const panelOpacity = Math.max(0.40, 1 - dist * 0.35);
-          panel.style.opacity = (tPanel * panelOpacity).toFixed(3);
+          const panelOpacity = Math.max(0.35, 1 - dist * 0.35);
+          panel.style.opacity = (tHead * panelOpacity).toFixed(3);
           const yOffset = idx > activeIndex ? 15 : -10;
           panel.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, ${(yOffset * (1 - tPanel * 0.5)).toFixed(1)}px, 0) scale(0.985)`;
         }
@@ -1262,7 +1282,7 @@ const scrollMap = {
   home: 0,
   about: 0.22,      // Professional Summary
   expertise: 0.40,  // Skills & Expertise
-  experience: 0.56, // Work Experience (starts directly on 01 - Reporter Broadcasting Company)
+  experience: 0.535, // Work Experience (starts directly on 01 - Reporter Broadcasting Company)
   education: 0.78,  // Education & Beyond
   contact: 0.96,    // Contact & Let's Connect
 };
@@ -1280,9 +1300,54 @@ function scrollToAnchor(targetId) {
   return true;
 }
 
+// Mobile Navigation Drawer Toggle
+const navToggleBtn = document.getElementById('nav-toggle-btn');
+const mainNav = document.getElementById('main-nav');
+
+function closeMobileNav() {
+  if (mainNav && mainNav.classList.contains('nav-open')) {
+    mainNav.classList.remove('nav-open');
+    if (navToggleBtn) navToggleBtn.setAttribute('aria-expanded', 'false');
+  }
+}
+
+function openMobileNav() {
+  if (mainNav) {
+    mainNav.classList.add('nav-open');
+    if (navToggleBtn) navToggleBtn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+if (navToggleBtn && mainNav) {
+  navToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mainNav.classList.contains('nav-open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      openMobileNav();
+    }
+  });
+
+  // Close when clicking outside header
+  document.addEventListener('click', (e) => {
+    if (mainNav.classList.contains('nav-open') && !mainNav.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  // Close when pressing Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mainNav.classList.contains('nav-open')) {
+      closeMobileNav();
+    }
+  });
+}
+
 // Hook all anchor links (navigation links, brand logo, hero contact link)
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (e) => {
+    closeMobileNav();
     const href = link.getAttribute('href');
     if (!href || href === '#') return;
     const targetId = href.substring(1);

@@ -40,6 +40,7 @@ const experienceHeader = document.getElementById('experience-header');
 const experienceStage = document.getElementById('experience-stage');
 const milestonesTrack = document.getElementById('experience-milestones-track');
 const milestonePanels = document.querySelectorAll('.experience-milestone-panel');
+const timelineProgress = document.getElementById('timeline-spine-progress');
 
 
 // 04 / Education & Beyond Elements
@@ -700,6 +701,10 @@ function updateScrollAnimations(progress) {
       experienceSection.style.opacity = '0';
       experienceSection.style.pointerEvents = 'none';
       if (milestonesTrack) milestonesTrack.style.transform = 'translate3d(0, 0, 0)';
+      if (timelineProgress) timelineProgress.style.height = '0%';
+      milestonePanels.forEach((panel) => {
+        panel.classList.remove('is-active-exp');
+      });
     } else if (progress <= 0.72) {
       experienceSection.style.visibility = 'visible';
       experienceSection.style.opacity = '1';
@@ -716,20 +721,65 @@ function updateScrollAnimations(progress) {
         expHeaderLine.style.transform = 'scaleX(1)';
       }
 
-      // Clean, predictable linear scroll through the experience track
+      // Smooth linear scroll through the experience track
       if (milestonesTrack && experienceStage) {
         const stageHeight = experienceStage.clientHeight || 600;
         const trackHeight = milestonesTrack.scrollHeight || 1800;
-        const maxTravel = Math.max(0, trackHeight - stageHeight + 20);
+        const maxTravel = Math.max(0, trackHeight - stageHeight + 40);
         const tScroll = clamp((progress - 0.52) / 0.18, 0, 1);
         const currentTravel = tScroll * maxTravel;
 
         milestonesTrack.style.transform = prefersReducedMotion ? 'none' : `translate3d(0, -${currentTravel.toFixed(1)}px, 0)`;
+
+        // Calculate visible panel reveals and active milestone marker
+        const stageRect = experienceStage.getBoundingClientRect();
+        const focalY = stageRect.top + Math.min(200, stageHeight * 0.36);
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        milestonePanels.forEach((panel, idx) => {
+          const rect = panel.getBoundingClientRect();
+          // Reveal when entering viewport window with subtle upward movement
+          if (rect.bottom >= stageRect.top - 60 && rect.top <= stageRect.bottom + 120) {
+            panel.classList.add('is-revealed');
+          }
+
+          // Active marker calculation: distance of marker top from focal line
+          const markerY = rect.top + 28;
+          const dist = Math.abs(markerY - focalY);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestIndex = idx;
+          }
+        });
+
+        // Ensure first panel is revealed
+        if (milestonePanels[0]) milestonePanels[0].classList.add('is-revealed');
+
+        // Toggle active marker and card highlight
+        milestonePanels.forEach((panel, idx) => {
+          if (idx === closestIndex) {
+            panel.classList.add('is-active-exp');
+          } else {
+            panel.classList.remove('is-active-exp');
+          }
+        });
+
+        // Subtle pink progress line height calculation
+        if (timelineProgress && milestonePanels.length > 0) {
+          const pct = Math.max(0, Math.min(100, (closestIndex / (milestonePanels.length - 1)) * 100));
+          timelineProgress.style.height = `${pct === 0 ? 5 : pct.toFixed(1)}%`;
+        }
       }
     } else {
       experienceSection.style.visibility = 'hidden';
       experienceSection.style.opacity = '0';
       experienceSection.style.pointerEvents = 'none';
+      if (timelineProgress) timelineProgress.style.height = '0%';
+      milestonePanels.forEach((panel) => {
+        panel.classList.remove('is-active-exp');
+      });
     }
   }
 

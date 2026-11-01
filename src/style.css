@@ -1412,7 +1412,7 @@ body {
 
 .experience-content-wrapper {
   width: 100%;
-  max-width: 1480px;
+  max-width: 1080px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1473,7 +1473,7 @@ body {
   margin-top: 8px;
 }
 
-/* Timeline Stage - No mask clipping, reliable clean container */
+/* Timeline Stage - Container */
 .experience-timeline-stage {
   position: relative;
   width: 100%;
@@ -1483,59 +1483,89 @@ body {
   margin-top: 4px;
 }
 
-/* Milestones Track */
+/* Milestones Track - Continuous Single Column */
 .experience-milestones-track {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 28px;
-  padding: 8px 0 160px 0;
+  padding: 16px 0 160px 0;
 }
 
-/* Clean, Static Timeline Spine Line */
+/* Vertical Timeline Spine on Left */
 .timeline-vertical-spine {
   position: absolute;
-  left: 50%;
+  left: 32px;
   top: 18px;
   bottom: 30px;
   width: 2px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(255, 51, 102, 0.6) 0%, rgba(255, 51, 102, 0.35) 75%, rgba(255, 51, 102, 0.15) 100%);
-  box-shadow: 0 0 6px rgba(255, 51, 102, 0.25);
   pointer-events: none;
   z-index: 1;
 }
 
-/* Milestone Panel - Always 100% Visible Immediately */
+.timeline-spine-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+.timeline-spine-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, #ff3366 0%, #ff6699 100%);
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.7);
+  border-radius: 2px;
+  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Milestone Panel - Single-Sided: All Cards on the Right */
 .experience-milestone-panel {
   position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
-  box-sizing: border-box;
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-/* Desktop Alternating Column Alignment */
-.experience-milestone-panel.milestone-left {
   justify-content: flex-start;
-  padding-right: calc(50% + 36px);
-  padding-left: 0;
-}
-
-.experience-milestone-panel.milestone-right {
-  justify-content: flex-end;
-  padding-left: calc(50% + 36px);
+  box-sizing: border-box;
+  padding-left: 74px;
   padding-right: 0;
+  opacity: 0.28;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-/* Static Timeline Marker Node */
+/* Subtle Staggered Entrance */
+.experience-milestone-panel[data-exp-index="1"] { transition-delay: 0.00s; }
+.experience-milestone-panel[data-exp-index="2"] { transition-delay: 0.05s; }
+.experience-milestone-panel[data-exp-index="3"] { transition-delay: 0.10s; }
+.experience-milestone-panel[data-exp-index="4"] { transition-delay: 0.15s; }
+.experience-milestone-panel[data-exp-index="5"] { transition-delay: 0.20s; }
+.experience-milestone-panel[data-exp-index="6"] { transition-delay: 0.25s; }
+
+/* Revealed State: Subtle Fade-In & Upward Movement */
+.experience-milestone-panel.is-revealed {
+  opacity: 0.90;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Active Focused Experience Marker and Card */
+.experience-milestone-panel.is-active-exp {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Timeline Marker Node Aligned on Left Spine */
 .milestone-marker-wrapper {
   position: absolute;
-  left: 50%;
+  left: 32px;
   top: 16px;
   transform: translateX(-50%);
   display: flex;
@@ -1551,18 +1581,31 @@ body {
   height: 32px;
   border-radius: 50%;
   background: #090307;
-  border: 1.5px solid #ff3366;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 0 12px rgba(255, 51, 102, 0.4), 0 3px 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-milestone-panel.is-active-exp .milestone-marker-node {
+  border-color: #ff3366;
+  background: rgba(255, 51, 102, 0.20);
+  box-shadow: 0 0 14px rgba(255, 51, 102, 0.65), 0 2px 10px rgba(0, 0, 0, 0.85);
+  transform: scale(1.08);
 }
 
 .milestone-num {
   font-family: 'Space Grotesk', monospace, sans-serif;
   font-size: 11px;
   font-weight: 800;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.35s ease;
+}
+
+.experience-milestone-panel.is-active-exp .milestone-num {
   color: #ffffff;
 }
 
@@ -1580,7 +1623,7 @@ body {
   white-space: nowrap;
 }
 
-/* Editorial Glass Card - Immediately Rendered & Legible */
+/* Editorial Glass Card */
 .milestone-card-glass {
   width: 100%;
   background: rgba(14, 5, 12, 0.85);
@@ -1592,15 +1635,17 @@ body {
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
   position: relative;
   overflow: visible;
-  opacity: 1 !important;
-  transform: none !important;
-  max-height: none !important;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.experience-milestone-panel:hover .milestone-card-glass {
+.experience-milestone-panel.is-active-exp .milestone-card-glass {
   border-color: rgba(255, 51, 102, 0.55);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.95), 0 0 24px rgba(255, 51, 102, 0.18);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.95), 0 0 22px rgba(255, 51, 102, 0.16);
+}
+
+.experience-milestone-panel:hover .milestone-card-glass {
+  border-color: rgba(255, 51, 102, 0.65);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.98), 0 0 26px rgba(255, 51, 102, 0.22);
 }
 
 /* Card Content Typography */
@@ -1615,6 +1660,13 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.58);
+}
+
+.milestone-period-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
 }
 
 .milestone-period {
@@ -1796,11 +1848,15 @@ body {
   .experience-heading {
     font-size: clamp(28px, 3.2vw, 38px);
   }
-  .experience-milestone-panel.milestone-left {
-    padding-right: calc(50% + 28px);
+  .experience-milestone-panel {
+    padding-left: 68px;
+    padding-right: 0;
   }
-  .experience-milestone-panel.milestone-right {
-    padding-left: calc(50% + 28px);
+  .timeline-vertical-spine {
+    left: 28px;
+  }
+  .milestone-marker-wrapper {
+    left: 28px;
   }
 }
 
@@ -1843,16 +1899,15 @@ body {
   }
   .experience-milestones-track {
     gap: 20px;
-    padding: 6px 0 160px 0;
+    padding: 12px 0 160px 0;
   }
   .timeline-vertical-spine {
     left: 18px;
     top: 14px;
     bottom: 24px;
-    transform: none;
+    transform: translateX(-50%);
   }
-  .experience-milestone-panel.milestone-left,
-  .experience-milestone-panel.milestone-right {
+  .experience-milestone-panel {
     padding-left: 44px !important;
     padding-right: 0 !important;
     justify-content: flex-start !important;
@@ -1877,8 +1932,6 @@ body {
   }
   .milestone-card-glass {
     padding: 14px 16px;
-    max-height: none !important;
-    overflow: visible !important;
   }
   .milestone-role {
     font-size: 15px;
@@ -1937,16 +1990,15 @@ body {
   }
   .experience-milestones-track {
     gap: 16px;
-    padding: 4px 0 160px 0;
+    padding: 10px 0 160px 0;
   }
   .timeline-vertical-spine {
     left: 15px;
     top: 12px;
     bottom: 20px;
-    transform: none;
+    transform: translateX(-50%);
   }
-  .experience-milestone-panel.milestone-left,
-  .experience-milestone-panel.milestone-right {
+  .experience-milestone-panel {
     padding-left: 36px !important;
     padding-right: 0 !important;
     justify-content: flex-start !important;
@@ -1977,8 +2029,6 @@ body {
     border-radius: 6px;
     width: 100%;
     box-sizing: border-box;
-    max-height: none !important;
-    overflow: visible !important;
   }
   .milestone-meta-row {
     font-size: 9.5px;
@@ -2057,17 +2107,19 @@ body {
     font-size: 10.5px;
   }
   .timeline-vertical-spine {
-    left: 14px;
+    left: 13px;
     top: 10px;
     bottom: 16px;
+    transform: translateX(-50%);
   }
-  .experience-milestone-panel.milestone-left,
-  .experience-milestone-panel.milestone-right {
-    padding-left: 36px !important;
+  .experience-milestone-panel {
+    padding-left: 32px !important;
+    padding-right: 0 !important;
   }
   .milestone-marker-wrapper {
-    left: 14px;
+    left: 13px;
     top: 10px;
+    transform: translateX(-50%);
   }
   .milestone-marker-node {
     width: 22px;
